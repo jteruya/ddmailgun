@@ -13,9 +13,9 @@ start15=$start
 while [ $start15 -lt $end ]
 do	
 
-	starttime=$(date -r $start15 '+%m/%d/%Y:%H:%M:%S')
+	starttime=$(date -d @"$start15")
 	end15=$[$start15+900]
-	endtime=$(date -r $end15 '+%m/%d/%Y:%H:%M:%S')
+	endtime=$(date -d @"$end15")
 
 	# Load for that segment
 	echo "Loading from "$starttime" to "$endtime"."
