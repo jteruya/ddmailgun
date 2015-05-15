@@ -19,7 +19,7 @@ full_curl='curl -XGET "'$base'from='$from'&to='$to'"'
 echo 'Executing: '$full_curl
 echo 'Landing to: '$land
 
-eval $full_curl > $land
+eval $full_curl | grep -v "12345678-AAAA-BBBB-CCCC-ABCDEFGHIJKL" > $land
 
 # Delete the previously loaded data for that timestamp range
 psql -h 10.223.176.157 -p 5432 -U kchiou -c "DELETE FROM mailgun.events WHERE EventTimestamp BETWEEN "$from"000 AND "$to"000;" dev
