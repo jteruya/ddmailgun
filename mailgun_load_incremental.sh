@@ -7,4 +7,4 @@ max_epoch=$(psql -h 10.223.176.157 -p 5432 -A -t -U kchiou -c "SELECT (MAX(Event
 curr_epoch=$(date +"%s")
 
 # Perform the mailgun load for the date range identified
-./mailgun_load.sh $max_epoch $curr_epoch
+$HOME/mailgun_load/./mailgun_load.sh $max_epoch $curr_epoch
