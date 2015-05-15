@@ -9,7 +9,7 @@ from=$1
 to=$2
 
 # Build out the CURL call and where it will land
-pwd=$(eval pwd)
+pwd=$HOME/mailgun_load
 base='https://greenactivityfeed.doubledutch.me/email/events?'
 land=$pwd'/land/land_'$1'_'$2
 
