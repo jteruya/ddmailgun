@@ -14,7 +14,7 @@ while [ $start15 -lt $end ]
 do	
 
 	starttime=$(date -d @"$start15")
-	end15=$[$start15+900]
+	end15=$[$start15+900000]
 	endtime=$(date -d @"$end15")
 
 	# Load for that segment
