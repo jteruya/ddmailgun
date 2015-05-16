@@ -14,10 +14,12 @@ while [ $start15 -lt $end ]
 do	
 
 	end15=$[$start15+900000]
+
 	start15_milli=$[$start15/1000]
-	echo $start15_milli
+	end15_milli=$[$end15/1000]
+	
 	starttime=$(date -d @"$start15_milli")
-	endtime=$(date -d @"$end15")
+	endtime=$(date -d @"$end15_milli")
 
 	# Load for that segment
 	echo "Loading from "$starttime" to "$endtime"."
