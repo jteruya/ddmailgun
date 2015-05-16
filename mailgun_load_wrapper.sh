@@ -23,7 +23,7 @@ do
 
 	# Load for that segment
 	echo "Loading from "$starttime" to "$endtime"."
-	# $HOME/mailgun_load/./mailgun_load.sh $start15 $end15
+	$HOME/mailgun_load/./mailgun_load.sh $start15 $end15
 
 	# Increment for the next piece
 	start15=$end15
