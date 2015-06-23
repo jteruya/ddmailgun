@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# ------------------------------------------------------------------------------------------------------------
+# Mailgun Load (Incremental)
+# Schedule this job in order for it to perform the "catch up" from the last loaded time to the current time. 
+# ------------------------------------------------------------------------------------------------------------
+
 # Identify the latest timestamp in the mailgun.events table
 max_epoch=$(psql -h 10.223.176.157 -p 5432 -A -t -U kchiou -c "SELECT MAX(EventTimestamp) FROM mailgun.events" dev)
 
