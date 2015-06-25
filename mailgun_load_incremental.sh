@@ -6,7 +6,7 @@
 # ------------------------------------------------------------------------------------------------------------
 
 # Identify the latest timestamp in the mailgun.events table
-max_epoch=$(psql -h 10.223.176.157 -p 5432 -A -t -U kchiou -c "SELECT MAX(EventTimestamp) FROM mailgun.events" dev)
+max_epoch=$(psql -h 10.208.97.116 -p 5432 -A -t -U analytics -c "SELECT MAX(EventTimestamp) FROM public.mailgun_events" etl)
 
 # Identify the current timestamp and convert to epoch
 curr_epoch=$(date +"%s%3N")
