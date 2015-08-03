@@ -12,4 +12,5 @@ max_epoch=$(psql -h 10.223.192.6 -p 5432 -A -t -U etl -c "SELECT MAX(EventTimest
 curr_epoch=$(date +"%s%3N")
 
 # Perform the mailgun load for the date range identified
-$HOME/mailgun_load/./mailgun_load.sh $max_epoch $curr_epoch
+#$HOME/mailgun_load/./mailgun_load.sh $max_epoch $curr_epoch
+$HOME/mailgun_load/./mailgun_load_wrapper.sh $max_epoch $curr_epoch
