@@ -24,4 +24,7 @@ create table public.mailguncube (
    , first_complained_timestamp timestamp
    , first_stored_timestamp timestamp
    , eventtimestamp_created bigint
-   , eventtimestamp_updated bigint);  
+   , eventtimestamp_updated bigint); 
+
+-- create index on applicationid
+create index ndx_mailguncube_application_id on mailguncube (applicationid);
