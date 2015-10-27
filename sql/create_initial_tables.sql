@@ -3,7 +3,11 @@ create table public.mailguncube (
      messageid varchar
    , applicationid uuid
    , recipientemail varchar
+   , recipientemaildomain varchar
+   , recipientname varchar
    , senderemail varchar
+   , senderemaildomain varchar
+   , sendername varchar
    , subject varchar
    , accepted_flag boolean
    , rejected_flag boolean
