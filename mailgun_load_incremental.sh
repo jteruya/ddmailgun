@@ -6,7 +6,7 @@
 # ------------------------------------------------------------------------------------------------------------
 
 # Identify the latest timestamp in the mailgun.events table
-max_epoch=$(psql -h 10.223.192.6 -p 5432 -A -t -U etl -c "SELECT MAX(EventTimestamp) FROM public.mailgun_events" analytics)
+max_epoch=$(psql -h 10.223.192.6 -p 5432 -A -t -U etl -c "SELECT MAX(EventTimestamp) FROM mailgun.mailgun_events" analytics)
 
 # Identify the current timestamp and convert to epoch
 curr_epoch=$(date +"%s%3N")
@@ -17,3 +17,6 @@ $HOME/mailgun_load/./mailgun_load_wrapper.sh $max_epoch $curr_epoch
 
 # Insert and update data into mailguncube 
 psql -h 10.223.192.6 -A -p 5432 -U etl -f "/home/etl/mailgun_load/sql/mailguncube_etl.sql" analytics
+
+# Insert and update mailgun aggregate tables 
+psql -h 10.223.192.6 -A -p 5432 -U etl -f "/home/etl/mailgun_load/sql/mailgun_agg_etl.sql" analytics

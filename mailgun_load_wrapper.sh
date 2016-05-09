@@ -16,7 +16,8 @@ start15=$start
 while [ $start15 -lt $end ]
 do	
 
-	end15=$[$start15+900000]
+	#end15=$[$start15+900000]
+        end15=$[$start15+300000]
 
 	start15_milli=$[$start15/1000]
 	end15_milli=$[$end15/1000]
