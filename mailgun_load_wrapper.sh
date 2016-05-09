@@ -1,6 +1,9 @@
 #!/bin/bash
 
+# ------------------------------------------------------------------------------------------------------------
+# Mailgun Load (Adhoc)
 # Using input parameters for the range to load, loads 15 minute segments into our target table
+# ------------------------------------------------------------------------------------------------------------
 
 # Assign the input parameters
 start=$1
