@@ -22,10 +22,10 @@ echo 'Landing to: '$land
 eval $full_curl | grep -v "12345678-AAAA-BBBB-CCCC-ABCDEFGHIJKL" | grep -v "testAppId" | grep -v "testAppId2" > $land
 
 # Delete the previously loaded data for that timestamp range
-psql -h 10.223.176.157 -p 5432 -U kchiou -c "DELETE FROM mailgun.events WHERE EventTimestamp BETWEEN "$from"000 AND "$to"000;" dev
+psql -h 10.223.176.157 -p 5432 -U jteruya -c "DELETE FROM mailgun.events WHERE EventTimestamp BETWEEN "$from" AND "$to";" dev
 
 # Load the file
-psql -h 10.223.176.157 -A -p 5432 -U kchiou -F',' -c "\COPY mailgun.events FROM '"$land"' DELIMITER ',' CSV HEADER;" dev
+psql -h 10.223.176.157 -A -p 5432 -U jteruya -F',' -c "\COPY mailgun.events FROM '"$land"' DELIMITER ',' CSV HEADER;" dev
 
 echo "done."
 
