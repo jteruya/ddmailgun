@@ -60,8 +60,8 @@ select a.messageid
      , min(case when a.eventstatus = 'unsubscribed' or (a.eventstatus = 'clicked' and a.clickurl like 'http://doubledutch.me/unsubscribe/%') then to_timestamp(a.eventtimestamp/1000) else null end) as first_unsubscribed_timestamp
      , min(case when a.eventstatus = 'complained' then to_timestamp(a.eventtimestamp/1000) else null end) as first_complained_timestamp
      , min(case when a.eventstatus = 'stored' then to_timestamp(a.eventtimestamp/1000) else null end) as first_stored_timestamp
-from (select * from public.mailgun_events where eventtimestamp > (select coalesce(max(eventtimestamp_created), 0) as maxeventtimestamp from public.mailguncube)) a
-join (select max(eventtimestamp) as maxeventtimestamp from public.mailgun_events) b
+from (select * from mailgun.mailgun_events where eventtimestamp > (select coalesce(max(eventtimestamp_created), 0) as maxeventtimestamp from mailgun.mailguncube)) a
+join (select max(eventtimestamp) as maxeventtimestamp from mailgun.mailgun_events) b
 on 1 = 1
 group by a.messageid, a.applicationid, b.maxeventtimestamp;
 
@@ -137,7 +137,7 @@ select exist.messageid
      , coalesce(exist.first_stored_timestamp, delta.first_stored_timestamp) as first_stored_timestamp
      , delta.maxeventtimestamp as eventtimestamp_updated
 from mailguncube_delta delta
-join public.mailguncube exist
+join mailgun.mailguncube exist
 on delta.messageid = exist.messageid;
 
 
@@ -203,7 +203,7 @@ select delta.messageid
      , delta.first_stored_timestamp
      , delta.maxeventtimestamp as eventtimestamp_created
 from mailguncube_delta delta
-left join public.mailguncube exist
+left join mailgun.mailguncube exist
 on delta.messageid = exist.messageid
 where exist.messageid is null;
 
@@ -212,7 +212,7 @@ where exist.messageid is null;
 -- Description: Update the mailguncube table based on the mailguncube_delta_update table.
 --============================================================================================================
 
-update public.mailguncube exist
+update mailgun.mailguncube exist
 set messageid = update.messageid
   , applicationid = update.applicationid
   , recipientemail = update.recipientemail
@@ -249,6 +249,6 @@ where update.messageid = exist.messageid;
 -- Description: Insert into the mailguncube table based on the mailguncube_delta_insert table.
 --============================================================================================================
 
-insert into public.mailguncube
+insert into mailgun.mailguncube
 select *
 from mailguncube_delta_insert;
