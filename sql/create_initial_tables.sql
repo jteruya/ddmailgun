@@ -32,3 +32,13 @@ create table mailgun.mailguncube (
 
 -- create index on applicationid
 create index ndx_mailguncube_application_id on mailgun.mailguncube (applicationid);
+
+-- create unsubscribe table
+drop table if exists mailgun.mailgun_unsubscribe;
+create table jt.unsubscribe (
+     email varchar
+   , messageid varchar
+   , id varchar
+   , event varchar
+   , url varchar
+   , timestamp_epoch bigint);
