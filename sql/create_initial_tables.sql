@@ -1,5 +1,5 @@
 -- create initial mailguncube table
-create table public.mailguncube (
+create table mailgun.mailguncube (
      messageid varchar
    , applicationid uuid
    , recipientemail varchar
@@ -31,4 +31,4 @@ create table public.mailguncube (
    , eventtimestamp_updated bigint); 
 
 -- create index on applicationid
-create index ndx_mailguncube_application_id on mailguncube (applicationid);
+create index ndx_mailguncube_application_id on mailgun.mailguncube (applicationid);
