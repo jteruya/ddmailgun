@@ -1,4 +1,27 @@
+-- create initial mailgun events table
+drop table if exists mailgun.mailgun_events;
+CREATE TABLE mailgun.mailgun_events (
+   applicationid UUID,
+   eventtimestamp BIGINT,
+   recipientemail CHARACTER VARYING(1000),
+   senderemail CHARACTER VARYING,
+   subject CHARACTER VARYING,
+   clickurl CHARACTER VARYING,
+   eventstatus CHARACTER VARYING,
+   id CHARACTER VARYING,
+   messageid CHARACTER VARYING,
+   clientos CHARACTER VARYING,
+   devicetype CHARACTER VARYING,
+   clientname CHARACTER VARYING,
+   clienttype CHARACTER VARYING,
+   useragent CHARACTER VARYING
+);
+
+-- create index on applicationid
+create index ndx_mailgun_events_application_id on mailgun.mailgun_events (applicationid);
+
 -- create initial mailguncube table
+drop table if exists mailgun.mailguncube;
 create table mailgun.mailguncube (
      messageid varchar
    , applicationid uuid
@@ -35,7 +58,7 @@ create index ndx_mailguncube_application_id on mailgun.mailguncube (applicationi
 
 -- create unsubscribe table
 drop table if exists mailgun.mailgun_unsubscribe;
-create table jt.unsubscribe (
+create table mailgun.mailgun_unsubscribe (
      email varchar
    , messageid varchar
    , id varchar
